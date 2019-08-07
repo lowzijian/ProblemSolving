@@ -1,27 +1,23 @@
-import java.util.*;
 
 public class Worker {
 
 	String workerid;
 	int availableTime;
-	LinkedList <Job> assignedJob;
+	Job[] assignedJob;
 
 	public Worker (String workerid , int availableTime)
 	{
-		this.availableTime = availableTime;
+		this.assignedJob = new Job[availableTime];
 		this.workerid = workerid;
+		this.availableTime = availableTime;
 		
 	}
 	
-	public void setScheduledJob(LinkedList <Job> scheduledJob)
-	{
-		this.assignedJob = scheduledJob;
-	}
-	
-	public LinkedList <Job> getAssignedJob ()
-	{
+	public Job[] getAssignedJob(){
 		return assignedJob;
 	}
-
-
+	
+	public void assignJob(int pos, Job job){
+		assignedJob[pos] = job;
+	}
 }
