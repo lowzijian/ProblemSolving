@@ -47,7 +47,7 @@ public class JobScheduling {
 		// Print out worker id and available time
 		for(Worker w:workers)
 		{
-			System.out.println(w.workerid + "  " + (w.assignedJob.length));
+			System.out.println(w.workerid + "  " + (w.availableTime));
 		}
 		
 		
