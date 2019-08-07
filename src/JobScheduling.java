@@ -94,9 +94,11 @@ public class JobScheduling {
 			System.out.print(w.workerid + ": ");
 			Job[] assignedJob = w.getAssignedJob();
 			
+			// Check if the all the elements are null or not
 			if(assignedJob[0] == null) {
 				System.out.print("This worker is not assigned with any job.\n");
 			}
+			//
 			else {
 			for(Job j:assignedJob){
 				if(j != null){
