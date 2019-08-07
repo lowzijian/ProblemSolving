@@ -23,3 +23,8 @@ Use weighted job scheduling
 Use dynamic programming with the concepts of weighted job scheduling  to ensure that no jobs are overlapped while
 optimise the maximum profits .
 [Journal reference]( http://www.cs.mun.ca/~kol/courses/3719-w12/scheduling.pdf)
+
+## To use the ArrayUtils class:
+Refer to this link: [How to import org.apache.commons.lang3] (https://www.youtube.com/watch?v=iHbiY1i4ivc)
+
+apache lang downdload: [apache lang download] (https://commons.apache.org/proper/commons-lang/)

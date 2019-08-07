@@ -1,5 +1,5 @@
 import java.util.*;
-
+import org.apache.commons.lang3.ArrayUtils;
 
 public class JobScheduling {
 
@@ -30,89 +30,79 @@ public class JobScheduling {
 			workers.add(w);
 		}
 
-		// sort the jobs in descending order of profits
-	
-		System.out.println("Job id :  Deadline :  Profit ");
-		
-		
 		// Print out jobs details
+		System.out.println("Job id :  Deadline :  Profit ");
 		for (Job job: jobs)
 		{
 			System.out.println(job.jobid + " : " + job.deadline + " : " + job.profit);
 		}
 
-		System.out.println("\nWorker id   :  Available Time ");
-		
-
 		// Print out worker id and available time
+		System.out.println("\nWorker id   :  Available Time ");
 		for(Worker w:workers)
 		{
 			System.out.println(w.workerid + "  " + (w.availableTime));
 		}
-		
-		
-		//jobScheduling.printSchedule(workers, workers.size());
+
+		// schedule and assign the jobs
 		int total_profit = jobScheduling.scheduleJobs(jobs,workers);
 
-		// print the workers 'assigned jobs
+		// print the workers' assigned jobs
 		jobScheduling.printScheduleandTotalProfit(workers,total_profit);
-
-
 	}
 
 
 	private int scheduleJobs (LinkedList<Job> jobs, LinkedList<Worker> workers)
 	{
-
+		// order the jobs in descending order of profits
 		Collections.sort(jobs);
 		int total_profit = 0;
-		for(int i=0;i<jobs.size();i++){
-			for(int j=0;j<workers.size();j++){
-				boolean jobAssinged = false;
+		
+		for(int i = 0; i < jobs.size(); i++){
+			for(int j = 0; j < workers.size(); j++){
+				boolean jobAssigned = false;
+				
+				// schedule the jobs as earlier as possible
 				for(int k=Math.min(workers.get(j).getAssignedJob().length - 1, jobs.get(i).deadline - 1); k>=0;k--){
-					
+					// assign the job if the slot is empty
 					if(workers.get(j).getAssignedJob()[k] == null){
 						workers.get(j).assignJob(k, jobs.get(i));
-						jobAssinged = true;
+						jobAssigned = true;
 						total_profit += jobs.get(i).profit;
 						break;
 					}
 				}
-				if(jobAssinged)
+				// break the loop if the job already assigned
+				if(jobAssigned)
 					break;
 			}
 		}
-		
+
 		return total_profit;
 	}
 
 	private void printScheduleandTotalProfit (LinkedList<Worker> workers , int total_profit)
 	{
 		System.out.println("--- Job Schedule --- ");
-		
 		for(Worker w:workers){
 			System.out.print(w.workerid + ": ");
 			Job[] assignedJob = w.getAssignedJob();
-			
+
 			// Check if the all the elements are null or not
-			if(assignedJob[0] == null) {
+			if(!ArrayUtils.isNotEmpty(assignedJob)) {
 				System.out.print("This worker is not assigned with any job.\n");
 			}
 			//
 			else {
-			for(Job j:assignedJob){
-				if(j != null){
-					System.out.print(j.jobid + "  ");
+				for(Job j : assignedJob){
+					if(j != null){
+						System.out.print(j.jobid + "  ");
+					}
 				}
-			   
+				System.out.println();
 			}
-			System.out.println();
-			}
-			
 		}
-		
+
 		System.out.println("Total Profit : " + total_profit);
 	}
-
-
 }
