@@ -7,9 +7,7 @@ public class JobScheduling {
 		JobScheduling jobScheduling = new JobScheduling();
 
 		LinkedList<Job> jobs = new LinkedList<Job>();
-		LinkedList<Job> jobs2 = new LinkedList<Job>();
 		LinkedList <Worker> workers = new LinkedList <Worker>();
-		LinkedList <Worker> workers2 = new LinkedList <Worker>();
 		
 		
 		
@@ -23,7 +21,6 @@ public class JobScheduling {
 			Job j = new Job(jobID, deadline, profit);
 			Job j1 = new Job(jobID, deadline, profit);
 			jobs.add(j);
-			jobs2.add(j1);
 		}
 
 		//generate 2 workers with random available time
@@ -34,7 +31,6 @@ public class JobScheduling {
 			Worker w = new Worker (workerID,availableTime);
 			Worker w1 = new Worker (workerID, availableTime);
 			workers.add(w);
-			workers2.add(w1);
 		}
 		
 
@@ -58,44 +54,10 @@ public class JobScheduling {
 		// print the workers' assigned jobs
 		jobScheduling.printScheduleandTotalProfit(workers,total_profit);
 		
-		int total_profit2 = jobScheduling.scheduleJobs2(jobs2,workers2);
-		jobScheduling.printScheduleandTotalProfit(workers2,total_profit2);
 		
 	}
 	
 	private int scheduleJobs (LinkedList<Job> jobs, LinkedList<Worker> workers)
-	{
-		// order the jobs in descending order of profits
-		Collections.sort(jobs);
-		int total_profit = 0;
-
-		for(int i = 0; i < jobs.size(); i++){
-			for(int j = 0; j < workers.size(); j++){
-				boolean jobAssigned = false;
-
-				// schedule the jobs as earlier as possible\
-				for(int k=Math.min(workers.get(j).getAssignedJob().length - 1, jobs.get(i).deadline - 1); k>=0;k--){
-					
-					// assign the job if the slot is empty
-					if(workers.get(j).getAssignedJob()[k] == null){
-						workers.get(j).assignJob(k, jobs.get(i));
-						jobAssigned = true;
-						total_profit += jobs.get(i).profit;
-						break;
-					}
-
-				}
-				
-				// break the loop if the job already assigned
-				if(jobAssigned)
-					break;
-				
-			}
-		}
-		return total_profit;
-	}
-	
-	private int scheduleJobs2 (LinkedList<Job> jobs, LinkedList<Worker> workers)
 	{
 		// order the jobs in descending order of profits
 		Collections.sort(jobs);
