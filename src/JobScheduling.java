@@ -19,7 +19,6 @@ public class JobScheduling {
 			int profit = rand.nextInt(50) + 1;
 			String jobID = "J" + (i+1);
 			Job j = new Job(jobID, deadline, profit);
-			Job j1 = new Job(jobID, deadline, profit);
 			jobs.add(j);
 		}
 
@@ -29,7 +28,6 @@ public class JobScheduling {
 			int availableTime = rand.nextInt(5)+1;
 			String workerID = "W" + (i+1);
 			Worker w = new Worker (workerID,availableTime);
-			Worker w1 = new Worker (workerID, availableTime);
 			workers.add(w);
 		}
 		
