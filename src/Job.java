@@ -15,4 +15,3 @@ public class Job implements Comparable <Job>{
 		return otherJob.profit- this.profit;
 	}
 }
-

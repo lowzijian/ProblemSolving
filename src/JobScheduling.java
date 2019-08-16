@@ -1,5 +1,4 @@
 import java.util.*;
-import org.apache.commons.lang3.ArrayUtils;
 
 public class JobScheduling {
 
@@ -88,19 +87,12 @@ public class JobScheduling {
 			System.out.print(w.workerid + ": ");
 			Job[] assignedJob = w.getAssignedJob();
 
-			// Check if the all the elements are null or not
-			if(!ArrayUtils.isNotEmpty(assignedJob)) {
-				System.out.print("This worker is not assigned with any job.\n");
-			}
-			//
-			else {
-				for(Job j : assignedJob){
-					if(j != null){
-						System.out.print(j.jobid + "  ");
-					}
+			for(Job j : assignedJob){
+				if(j != null){
+					System.out.print(j.jobid + "  ");
 				}
-				System.out.println();
 			}
+			System.out.println();
 		}
 
 		System.out.println("Total Profit : " + total_profit);
