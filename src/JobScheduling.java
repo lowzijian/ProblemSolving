@@ -58,23 +58,25 @@ public class JobScheduling {
 		int total_profit = 0;
 		
 		for(int i = 0; i < jobs.size(); i++){
-			for(int j = 0; j < workers.size(); j++){
-				boolean jobAssigned = false;
-				
-				// schedule the jobs as earlier as possible
-				for(int k=Math.min(workers.get(j).getAssignedJob().length - 1, jobs.get(i).deadline - 1); k>=0;k--){
-					// assign the job if the slot is empty
-					if(workers.get(j).getAssignedJob()[k] == null){
-						workers.get(j).assignJob(k, jobs.get(i));
-						jobAssigned = true;
-						total_profit += jobs.get(i).profit;
-						break;
+			boolean jobAssigned = false;
+			
+			for(int j=jobs.get(i).deadline - 1; j >= 0; j--){
+				// assign the job if the slot is empty
+				for (int k = 0; k < workers.size(); k++) {
+					if (workers.get(k).getAssignedJob().length > j) {
+						if(workers.get(k).getAssignedJob()[j] == null) {
+							workers.get(k).assignJob(j, jobs.get(i));
+							total_profit += jobs.get(i).profit;
+							jobAssigned = true;
+							break;
+						}
 					}
 				}
+				
 				// break the loop if the job already assigned
 				if(jobAssigned)
 					break;
-			}
+			}		
 		}
 
 		return total_profit;
