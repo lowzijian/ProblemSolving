@@ -9,8 +9,20 @@ public class Job implements Comparable <Job>{
 	
 	public Job(String jobid , int deadline , int profit)
 	{
-		this.profit = profit;
-		this.deadline = deadline;
+		if(profit < 0) {
+			throw new IllegalArgumentException("Only Positive Numbers is available for profit."); 
+		}
+		else {
+			this.profit = profit;
+		}
+		
+		if(deadline < 0) {
+			throw new IllegalArgumentException("Only Positive Numbers is available for deadline"); 
+		}
+		else {
+			this.deadline = deadline;
+		}
+		
 		this.jobid = jobid;
 	}
 

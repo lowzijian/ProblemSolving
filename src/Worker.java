@@ -7,9 +7,15 @@ public class Worker implements Comparable <Worker>{
 
 	public Worker (String workerid , int availableTime)
 	{
+		if(availableTime < 0) {
+			throw new IllegalArgumentException("Only Positive Numbers is available for availableTime."); 
+		}
+		else {
+			this.availableTime = availableTime;
+		}
+		
 		this.assignedJob = new Job[availableTime];
 		this.workerid = workerid;
-		this.availableTime = availableTime;
 		
 	}
 	
