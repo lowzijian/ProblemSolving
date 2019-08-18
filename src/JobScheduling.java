@@ -29,9 +29,9 @@ public class JobScheduling {
 		//generate 2 workers with random available time
 		for (int i= 0; i<2; i++)
 		{
-			int availableTime = rand.nextInt(5)+1;
-			String workerID = "W" + (i+1);
-			Worker w = new Worker (workerID,availableTime);
+			int availableTime = rand.nextInt(5) + 1;
+			String workerID = "W" + (i + 1);
+			Worker w = new Worker (workerID, availableTime);
 			Worker w1 = new Worker (workerID, availableTime);
 			workers.add(w);
 			workers2.add(w1);
@@ -115,8 +115,10 @@ public class JobScheduling {
 					int workerAvailableTime = workers.get(index).getAssignedJob().length - 1;
 					int deadline = jobs.get(i).deadline - 1;
 					int k = Math.min(workerAvailableTime, deadline);
+					System.out.println(workerAvailableTime + " " + deadline);
 					
 					jobPost = k - count;
+					System.out.println(jobPost);
 					
 					if(jobPost < 0 && j == workers.size()-1) {
 						flag = false;
