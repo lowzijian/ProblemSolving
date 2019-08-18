@@ -25,16 +25,11 @@ public class JobScheduling {
 		//generate 2 workers with random available time
 		for (int i= 0; i<2; i++)
 		{
-<<<<<<< HEAD
+
 			int availableTime = rand.nextInt(5) + 1;
 			String workerID = "W" + (i+1);
 			Worker w = new Worker (workerID, availableTime);
-			Worker w1 = new Worker (workerID, availableTime);
-=======
-			int availableTime = rand.nextInt(5)+1;
-			String workerID = "W" + (i+1);
-			Worker w = new Worker (workerID,availableTime);
->>>>>>> 18f45e036aacee294c176fd02684d54de33dc0d7
+
 			workers.add(w);
 		}
 		
